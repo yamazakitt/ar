@@ -19,13 +19,23 @@
     <!-- シーンの作成、VRモードのUI非表示 -->
     <a-scene embedded arjs vr-mode-ui="enabled: false">
 
+    <!-- テスト用の箱とglb  A-Frame-->
     <a-cylinder animation="property: rotation; from: 0 0 0; to: 0 -360 0; dur: 2000; easing: linear; loop: true" 
     src="https://farm2.staticflickr.com/1499/25634412711_f89ab2a240_k.jpg"
-      position="0 1 -5" height="1.5" radius="1.5">
+      position="10 1 -5" height="1.5" radius="1.5">
     </a-cylinder>
       
-      <!-- テスト用の箱とglb  A-Frame-->
    <a-entity
+　　animation="property: rotation; from: 0 0 0; to: 0 -360 0; dur: 2000; easing: linear; loop: true" 
+    position="0 0 -5" height="1.5" radius="1.5"
+    animation__2="property: rotation; to: 360 360 0; loop: true; dur: 2000"
+     >
+     <a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer>
+     </a-gltf-model>
+     </a-entity>
+
+      
+      <a-entity
              geometry="primitive: plane; height: 5; width: 5"
              material="color: red"
              position="0 0 -10"
@@ -41,22 +51,6 @@
      <a-box position="0 0.0 0"></a-box>
      </a-entity>
 
-   <a-entity
-             geometry="primitive: plane; height: 5; width: 5"
-             position="0 0 -10"
-             rotation="0 0 0"
-             animation="property: rotation;
-             from: 0 0 0;
-             to: 360 0 0;
-             dir: alternate;
-             dur: 1000;
-             loop: true;
-             easing: easeInOutSine"
-             animation__2="property: rotation; to: 360 360 0; loop: true; dur: 2000"
-     >
-     <a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer>
-     </a-gltf-model>
-     </a-entity>
 
 
 
