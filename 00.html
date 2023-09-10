@@ -15,26 +15,25 @@
   <body style="margin: 0; overflow: hidden">
     <!-- シーンの作成、VRモードのUI非表示 -->
     <a-scene embedded arjs vr-mode-ui="enabled: false">
-    　<a-box position="1 0.5 -9" rotation="0 45 0" color="#4CC3D9"></a-box>
+
+      <!-- テスト用の箱とglb  A-Frame-->
+      <a-box position="1 0.5 -9" rotation="0 45 0" color="#4CC3D9"></a-box>
+　    <a-gltf-model src="kyoju003.glb" position="0 0 0"></a-gltf-model>
 
       <a-assets>
         <!-- 3Dモデルを読み込む -->
         <a-asset-item id="chaei" src="kyoju003.glb" scale="1 1 1"></a-asset-item>
       </a-assets>
-
-      
       <!-- マーカーを設定する -->
       <a-marker type="pattern" url="hiro.patt">
+
         <!-- 3Dモデルを呼び出す -->
-
-
 <!--
         <a-entity gltf-model="#chaei" rotation="0 0 0"></a-entity>
-        <a-entity gltf-model="#chaei" animation="property: rotation="-90 0 0"; to: 0 0 0; loop: true; dur: 1000">-->
--->
-
+        <a-entity gltf-model="#chaei" animation="property: rotation="-90 0 0"; to: 0 0 0; loop: true; dur: 1000">
+        </a-entity>
         <a-entity gltf-model="#chaei" position="3 0.5 -9" rotation="-90 0 0"></a-entity>
-
+ -->
       </a-entity> 
 
       <!-- カメラを追加 -->
