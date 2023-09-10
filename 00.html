@@ -15,6 +15,8 @@
   <body style="margin: 0; overflow: hidden">
     <!-- シーンの作成、VRモードのUI非表示 -->
     <a-scene embedded arjs vr-mode-ui="enabled: false">
+    　<a-box position="0 0.5 -9" rotation="0 45 0" color="#4CC3D9"></a-box>
+
       <a-assets>
         <!-- 3Dモデルを読み込む -->
         <a-asset-item id="chaei" src="kyoju003.glb" scale="1 1 1"></a-asset-item>
@@ -25,7 +27,6 @@
       <a-marker type="pattern" url="hiro.patt">
         <!-- 3Dモデルを呼び出す -->
 
-    　<a-box position="0 0.5 -9" rotation="0 45 0" color="#4CC3D9"></a-box>
 
 <!--
         <a-entity gltf-model="#chaei" rotation="0 0 0"></a-entity>
