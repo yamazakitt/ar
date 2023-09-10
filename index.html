@@ -19,10 +19,16 @@
         <!-- 3Dモデルを呼び出す -->
 //def        <a-entity gltf-model="#chaei" rotation="-90 0 0"></a-entity>
 
-        <a-sphere position="0 0.5 0" 
-               material="src: #chaei; transparent: true; opacity: 0.95;"
-               animation__rotate = "property: rotation; dur: 8000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
-        </a-sphere>
+              <a-animation
+                attribute="rotation"
+                from="20 0 0"
+                to="20 180 0"
+                direction="alternate"
+                dur="4000"
+                repeat="indefinite"
+                easing="ease">
+              </a-animation>
+
 
       </a-marker>
 
