@@ -20,14 +20,24 @@
     <a-scene embedded arjs vr-mode-ui="enabled: false">
 
     <!-- テスト用の箱とglb  A-Frame-->
+      
     <a-cylinder animation="property: rotation; from: 0 0 0; to: 0 -360 0; dur: 2000; easing: linear; loop: true" 
     src="https://farm2.staticflickr.com/1499/25634412711_f89ab2a240_k.jpg"
-      position="10 1 -5" height="1.5" radius="1.5">
+      position="1 -1 -5" height="1.5" radius="1.5">
     </a-cylinder>
       
-   <a-entity
-　　animation="property: rotation; from: 0 0 0; to: 0 -360 0; dur: 2000; easing: linear; loop: true" 
-    position="0 0 -5" height="1.5" radius="1.5"
+      <a-entity
+             geometry="primitive: plane; height: 5; width: 5"
+             material="color: red"
+             position="0 0 -10"
+             rotation="0 0 0"
+             animation="property: rotation;
+             from: 0 0 0;
+             to: 0 0 360;
+             dir: alternate;
+             dur: 1000;
+             loop: true;
+             easing: easeInOutSine"
      >
      <a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer>
      </a-gltf-model>
