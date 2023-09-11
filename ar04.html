@@ -73,8 +73,21 @@
 <a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer></a-gltf-model>
 </a-entity>
 
-<a-entity position="-1 -2 -2" rotation="0 0 0">
-<a-gltf-model src="kyoju003b.glb" position="0 0 0" animation-mixer></a-gltf-model>
+<a-entity position="0 0 0" rotation="0 0 0">
+<a-gltf-model src="kyoju003.glb" position="0 0 2" animation-mixer></a-gltf-model>
+</a-entity>
+        
+        
+<a-entity position="0 0 0" rotation="0 0 0">
+<a-gltf-model src="kyoju003b.glb" position="0 0 0"
+ animation="property: position;
+ from: -360 -360 0;
+ to: 360 360 0;
+ dir: alternate;
+ dur: 10000;
+ loop: true;
+ easing: easeInOutSine"
+    ></a-gltf-model>
 </a-entity>
         
         
