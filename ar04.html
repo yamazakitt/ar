@@ -69,12 +69,14 @@
 <!--<a-scene embedded arjs='debugUIEnabled:false;trackingMethod: best;'>-->
     <a-scene embedded arjs='debugUIEnabled:false;'>
 
-<a-entity>
-<a-gltf-model src="kyoju003b.glb" position="0 0 -2" rotation="0 0 0">
-  
-  </a-gltf-model>
+<a-entity position="1.5 -1.5 -2" rotation="0 0 0">
+<a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer></a-gltf-model>
 </a-entity>
-    
+
+<a-entity position="3 -1.5 -2" rotation="0 0 0">
+<a-gltf-model src="kyoju003b.glb" position="0 0 0" animation-mixer></a-gltf-model>
+</a-entity>
+        
 <!-- ⑥ カメラを追加 -->
 <a-entity camera></a-entity>
 </a-scene>
