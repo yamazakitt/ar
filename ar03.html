@@ -1,64 +1,40 @@
-<html><head><title>03C</title>
-<!-- A-Frameを読み込む -->
-<!-- aframe-extras読み込み -->
-<!-- AR.jsを読み込む -->
-<script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <style>
-    /* 撮影ボタンのスタイルを設定 */
-    #captureButton {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 999;
-    }
-  </style>
-
+<html>
+<head>
+  <title>AR with Custom UI</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 </head>
 <body style="margin: 0; overflow: hidden">
 
-<!-- シーンの作成、VRモードのUI非表示 -->
-<a-scene embedded arjs vr-mode-ui="enabled: false">
+  <a-scene embedded arjs vr-mode-ui="enabled: false">
+    <a-entity position="1.5 -1.5 -2" rotation="0 0 0">
+      <a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer></a-gltf-model>
+    </a-entity>
+    <a-entity camera></a-entity>
 
-<a-entity position="1.5 -1.5 -2" rotation="0 0 0">
-	<a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer></a-gltf-model>
-</a-entity>
+    <!-- カスタムUIコンポーネントを追加 -->
+    <a-entity custom-ui>
+      <button id="captureButton" onclick="captureScreenshot()">撮影</button>
+    </a-entity>
+  </a-scene>
 
-<!-- 撮影ボタンを追加 -->
-<button id="captureButton">撮影</button>
+  <script>
+    // glTFの表示が暗くなる問題に対処
+    document.querySelector("a-scene").renderer.gammaOutput = true;
 
-<!-- カメラを追加 -->
-<a-entity camera></a-entity>
+    // スクリーンショットをキャプチャする関数
+    function captureScreenshot() {
+      // A-Frameのcanvasを取得
+      const canvas = document.querySelector("canvas");
 
+      // キャンバスからデータURLを取得
+      const dataURL = canvas.toDataURL("image/png");
 
-
-</a-scene>
+      // データURLを使って新しいウィンドウで画像を表示
+      const newWindow = window.open();
+      newWindow.document.write('<img src="' + dataURL + '" alt="AR Screenshot"/>');
+    }
+  </script>
 </body>
-
-<script>
-	//glTFの表示が暗くなる問題に対処
-	document.querySelector("a-scene").renderer.gammaOutput=true;
-
-	// 撮影ボタンのクリックハンドラを設定
-	document.getElementById("captureButton").addEventListener("click", function () {
-	// キャプチャロジックをここに追加
-	captureScreenshot();
-	});
-
-	// スクリーンショットをキャプチャする関数
-	function captureScreenshot() {
-	// A-Frameのcanvasを取得
-	const canvas = document.querySelector("canvas");
-
-	// キャンバスからデータURLを取得
-	const dataURL = canvas.toDataURL("image/png");
-
-	// データURLを使って新しいウィンドウで画像を表示
-	const newWindow = window.open();
-	newWindow.document.write('<img src="' + dataURL + '" alt="AR Screenshot"/>');
-	}
-</script>
-
 </html>
