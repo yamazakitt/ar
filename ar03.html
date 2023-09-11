@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>AR2</title>
+  <title>AR3</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
@@ -36,18 +36,23 @@
     // glTFの表示が暗くなる問題に対処
     document.querySelector("a-scene").renderer.gammaOutput = true;
 
-    // スクリーンショットをキャプチャする関数
-    function captureScreenshot() {
-      // A-Frameのcanvasを取得
-      const canvas = document.querySelector("canvas");
-
-      // キャンバスからデータURLを取得
-      const dataURL = canvas.toDataURL("image/png");
-
-      // データURLを使って新しいウィンドウで画像を表示
-      const newWindow = window.open();
-      newWindow.document.write('<img src="' + dataURL + '" alt="AR Screenshot"/>');
-    }
+// スクリーンショットをキャプチャする関数
+function captureScreenshot() {
+  // A-Frameのcanvasを取得
+  const canvas = document.querySelector("canvas");
+  // カンバスからデータURLを取得
+  const dataURL = canvas.toDataURL("image/png");
+  // データURLから画像オブジェクトを作成
+  const img = new Image();
+  img.src = dataURL;
+  // 画像が読み込まれた後に処理を行う
+  img.onload = function () {
+  // 新しいウィンドウを開いて画像を表示
+  const newWindow = window.open();
+  newWindow.document.write('<img src="' + dataURL + '" alt="AR Screenshot"/>');
+  };
+}
+  
   </script>
 </body>
 </html>
