@@ -63,14 +63,14 @@
 
 <body style="margin: 0; overflow: hidden">
 
-//シーン作成 設定：デバック表示なし、カメラトラッキングベスト、VRなし、
+<!--シーン作成 設定：デバック表示なし、カメラトラッキングベスト、VRなし、-->
 <a-scene embedded arjs='debugUIEnabled:false;trackingMethod: best;' vr-mode-ui="enabled: false">
-	//オブジェクト
+	<!--オブジェクト-->
 	<a-entity position="1.5 -1.5 -2" rotation="0 0 0">
 	<a-gltf-model src="kyoju003.glb" position="0 0 0" animation-mixer></a-gltf-model>
 	</a-entity>
 
-	//カメラ
+	<!--カメラ-->
 	<a-entity camera></a-entity>
 	<a-entity camera></a-entity>
 </a-scene>
@@ -87,17 +87,14 @@
 
 
 <script>
-// glTFの表示が暗くなる問題に対処
+<!--  glTFの表示が暗くなる問題に対処-->
 document.querySelector("a-scene").renderer.gammaOutput = true;
-
-
-//----------------------
 var image = document.querySelector('#snap');
 var take_photo_btn = document.querySelector('#take-photo');
 var delete_photo_btn = document.querySelector('#delete-photo');
 var download_photo_btn = document.querySelector('#download-photo');
 
-//スナップショットボタン
+<!-- スナップショットボタン-->
 take_photo_btn.addEventListener("click", function (e) {
 e.preventDefault();
 var video = document.querySelector('video');
