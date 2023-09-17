@@ -13,6 +13,18 @@
     
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        .sui {
+            position: absolute;
+            z-index: 100;
+            top: 10px; /* 上部に配置 */
+            right: 10px; /* 右側に配置 */
+            width: 200px; /* 幅を調整 */
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
         .ui {
             position: absolute;
             z-index: 100;
@@ -89,8 +101,9 @@
     <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
     <a href="" id="take-photo" title="Take Photo"><i class="material-icons">photo_camera</i></a>
     <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">file_download</i></a>
+</div>
 
-
+<div class="sui">
     <!-- X座標のスライダー -->
     <label for="x-slider">X座標:</label>
     <input type="range" id="x-slider" min="-10" max="10" step="0.1" value="-0.5">
