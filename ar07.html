@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+   <!-- <meta name="viewport" content="width=device-width,initial-scale=1">-->
+    <title> *5* </title>
+
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    
+    
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .ui {
+            position: absolute;
+            z-index: 100;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 10px 15px 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .ui a {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: #ffffff;
+            line-height: 100%;
+            color: #303030;
+            margin: 10px 3px;
+            border-radius: 50%;
+            position: relative;
+
+        }
+        .ui a i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .ui a:active {
+            color: #ff0000;
+        }
+
+        #snap {
+            max-width: 100%;
+            height: auto;
+            display: block;;
+            visibility: hidden;
+        }
+        .ui a.disabled {
+            pointer-events: none;
+            color: #cccccc;
+        }
+        #snap.visible {
+            visibility: visible;
+        }
+    </style>
+
+</head>
+
+<body style='margin: 0; overflow: hidden;'>
+<!-- ③ シーンを追加 -->
+<!--<a-scene embedded arjs='debugUIEnabled:false;trackingMethod: best;' vr-mode-ui="enabled: false">-->
+<!--<a-scene embedded arjs='debugUIEnabled:false;trackingMethod: best;'>-->
+    <a-scene embedded arjs='debugUIEnabled:false;'>
+
+
+<a-entity ><a-gltf-model src="kyoju003b.glb" position="-0.5 -1.0 -5" rotation="0 180 0" animation-mixer
+                animation="property: rotation;
+ from: 0 0 0;
+ to: 0 360 0;
+ dir: normal;
+ dur: 20000;
+ loop: true;
+ "></a-gltf-model></a-entity>
+
+
+      <!-- ⑥ カメラを追加 -->
+<a-entity camera></a-entity>
+</a-scene>
+<div class="ui">
+    <img id="snap">
+    <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+    <a href="" id="take-photo" title="Take Photo"><i class="material-icons">photo_camera</i></a>
+    <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">file_download</i></a>
+
+
+    <!-- X座標のスライダー -->
+    <label for="x-slider">X座標:</label>
+    <input type="range" id="x-slider" min="-10" max="10" step="0.1" value="-0.5">
+
+    <!-- Y座標のスライダー -->
+    <label for="y-slider">Y座標:</label>
+    <input type="range" id="y-slider" min="-10" max="10" step="0.1" value="-1.0">
+
+    <!-- Z座標のスライダー -->
+    <label for="z-slider">Z座標:</label>
+    <input type="range" id="z-slider" min="-10" max="10" step="0.1" value="-5">
+
+
+</div>
+    -->
+</body>
+<script>
+    var image = document.querySelector('#snap');
+    var take_photo_btn = document.querySelector('#take-photo');
+    var delete_photo_btn = document.querySelector('#delete-photo');
+    var download_photo_btn = document.querySelector('#download-photo');
+
+    //スナップショットボタン
+    take_photo_btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        var video = document.querySelector('video');
+        var snap = takeSnapshot(video);
+
+        //スナップショット表示.
+        image.setAttribute('src', snap);
+        image.classList.add('visible');
+
+        // 削除ボタンと保存ボタン有効
+        delete_photo_btn.classList.remove("disabled");
+        download_photo_btn.classList.remove("disabled");
+
+        // 保存ボタンにスナップショットを渡す
+        download_photo_btn.href = snap;
+    });
+
+    //削除ボタン
+    delete_photo_btn.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        // スナップショットを隠す
+        image.setAttribute('src', "");
+        image.classList.remove("visible");
+
+        // 削除ボタンと保存ボタン無効
+        delete_photo_btn.classList.add("disabled");
+        download_photo_btn.classList.add("disabled");
+
+    });
+
+    //スナップショットを撮る
+    function takeSnapshot(video) {
+        var resizedCanvas = document.createElement("canvas");
+        var resizedContext = resizedCanvas.getContext("2d");
+        var width = video.videoWidth;
+        var height = video.videoHeight;
+        var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+
+        if (width && height) {
+            //videoのサイズをキャンバスにセット
+            resizedCanvas.width = width;
+            resizedCanvas.height = height;
+            //キャンバスにvideoをコピー
+            resizedContext.drawImage(video, 0, 0, width, height);
+
+            //カメラの画角でar側の縮小処理を変える
+            if (width > height) {
+                // 横長（PC)
+                resizedContext.drawImage(aScene, 0, 0, width, height);
+            } else {
+                // 縦長（スマホ）
+                var scale = height / width;
+                var scaledWidth = height * scale;
+                var marginLeft = (width - scaledWidth) / 2;
+                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+            }
+            return resizedCanvas.toDataURL('image/png');
+        }
+    }
+
+
+
+    var xSlider = document.querySelector('#x-slider');
+    var ySlider = document.querySelector('#y-slider');
+    var zSlider = document.querySelector('#z-slider');
+    var model = document.querySelector('a-gltf-model');
+
+    xSlider.addEventListener('input', function () {
+        var x = parseFloat(xSlider.value);
+        model.setAttribute('position', x + ' ' + ySlider.value + ' ' + zSlider.value);
+    });
+
+    ySlider.addEventListener('input', function () {
+        var y = parseFloat(ySlider.value);
+        model.setAttribute('position', xSlider.value + ' ' + y + ' ' + zSlider.value);
+    });
+
+    zSlider.addEventListener('input', function () {
+        var z = parseFloat(zSlider.value);
+        model.setAttribute('position', xSlider.value + ' ' + ySlider.value + ' ' + z);
+    });
+
+
+</script>
+</html>
