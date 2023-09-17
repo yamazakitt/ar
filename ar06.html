@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>3Dモデルの位置変更</title>
+    <title>3ちちとDモデルの位置変更</title>
 
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
@@ -13,14 +13,13 @@
         .ui {
             position: absolute;
             z-index: 100;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: auto;
-            margin: 0;
-            padding: 10px 15px 30px;
-            text-align: center;
-            box-sizing: border-box;
+            top: 10px; /* 上部に配置 */
+            right: 10px; /* 右側に配置 */
+            width: 200px; /* 幅を調整 */
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         .ui label {
