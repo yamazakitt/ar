@@ -196,8 +196,6 @@
     var xSlider = document.querySelector('#x-slider');
     var ySlider = document.querySelector('#y-slider');
     var zSlider = document.querySelector('#z-slider');
-    var rSlider = document.querySelector('#r-slider');
-
     var model = document.querySelector('a-gltf-model');
 
     xSlider.addEventListener('input', function () {
@@ -214,7 +212,13 @@
         var z = parseFloat(zSlider.value);
         model.setAttribute('position', xSlider.value + ' ' + ySlider.value + ' ' + z);
     });
-    
+
+    var rSlider = document.querySelector('#r-slider');
+    var model = document.querySelector('a-gltf-model');
+    rSlider.addEventListener('input', function () {
+    var rotationValue = parseFloat(rSlider.value);
+    model.setAttribute('rotation', '0 ' + rotationValue + ' 0');
+});
 
 </script>
 </html>
