@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
    <!-- <meta name="viewport" content="width=device-width,initial-scale=1">-->
-    <title> 08 </title>
+    <title> *5* </title>
 
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.2.0/dist/aframe-extras.min.js"></script>
@@ -116,10 +116,6 @@
     <label for="z-slider"></label>
     <input type="range" id="z-slider" min="-10" max="10" step="0.1" value="-5">
 
-    <!-- 回転のスライダー -->
-    <label for="r-slider"></label>
-    <input type="range" id="r-slider" min="0" max="360" step="10" value="0">
-
 
 </div>
     -->
@@ -198,7 +194,6 @@
     var xSlider = document.querySelector('#x-slider');
     var ySlider = document.querySelector('#y-slider');
     var zSlider = document.querySelector('#z-slider');
-    var rSlider = document.querySelector('#r-slider');
     var model = document.querySelector('a-gltf-model');
 
     xSlider.addEventListener('input', function () {
@@ -214,11 +209,6 @@
     zSlider.addEventListener('input', function () {
         var z = parseFloat(zSlider.value);
         model.setAttribute('position', xSlider.value + ' ' + ySlider.value + ' ' + z);
-    });
-
-    rSlider.addEventListener('input', function () {
-        var r = parseFloat(rSlider.value);
-        model.setAttribute('rotation', 0 + ' ' + r + ' ' 0);
     });
 
 
