@@ -215,6 +215,11 @@
         model.setAttribute('position', xSlider.value + ' ' + ySlider.value + ' ' + z);
     });
 
+    rSlider.addEventListener('input', function () {
+        var r = parseFloat(rSlider.value);
+        model.setAttribute('rotation', 0 + ' ' + r + ' ' 0);
+    });
+    
 
 </script>
 </html>
