@@ -89,7 +89,7 @@
 
         
         
-<a-entity ><a-gltf-model src="0.01.glb" position="-0.5 -1.0 -5" rotation="0 180 0"></a-gltf-model></a-entity>
+<a-entity ><a-gltf-model src="a.glb" position="-0.5 -1.0 -5" rotation="0 180 0"></a-gltf-model></a-entity>
 
 
 
@@ -235,13 +235,14 @@ var button1 = document.querySelector('#button1');
 var button2 = document.querySelector('#button2');
 
 button1.addEventListener('click', function () {
-    // ボタン1がクリックされたときの処理を記述
-    // 例: alert('ボタン1がクリックされました');
+    var gltfModel = document.querySelector('a-gltf-model');
+    gltfModel.setAttribute('src', 'a.glb'); // モデルをb.glbに切り替える
 });
-
+    
+    
 button2.addEventListener('click', function () {
-    // ボタン2がクリックされたときの処理を記述
-    // 例: alert('ボタン2がクリックされました');
+    var gltfModel = document.querySelector('a-gltf-model');
+    gltfModel.setAttribute('src', 'b.glb'); // モデルをb.glbに切り替える
 });
 </script>
 </html>
