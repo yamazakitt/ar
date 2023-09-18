@@ -83,7 +83,14 @@
     <a-scene embedded arjs='debugUIEnabled:false;'>
 
 
-<a-entity ><a-gltf-model src="kyoju003b.glb" position="-0.5 -1.0 -5" rotation="0 180 0" animation-mixer"></a-gltf-model></a-entity>
+<a-entity ><a-gltf-model src="kyoju003b.glb" position="-0.5 -1.0 -5" rotation="0 180 0" animation-mixer
+                animation="property: rotation;
+ from: 0 0 0;
+ to: 0 360 0;
+ dir: normal;
+ dur: 20000;
+ loop: true;
+ "></a-gltf-model></a-entity>
 
 
       <!-- ⑥ カメラを追加 -->
@@ -191,6 +198,7 @@
     var xSlider = document.querySelector('#x-slider');
     var ySlider = document.querySelector('#y-slider');
     var zSlider = document.querySelector('#z-slider');
+    var rSlider = document.querySelector('#r-slider');
     var model = document.querySelector('a-gltf-model');
 
     xSlider.addEventListener('input', function () {
@@ -210,10 +218,9 @@
 
     rSlider.addEventListener('input', function () {
         var r = parseFloat(rSlider.value);
-        model.setAttribute('rotation', 0 + ' ' + ySlider.value + ' ' 0);
+        model.setAttribute('rotation', 0 + ' ' + r + ' ' 0);
     });
 
-  
 
 </script>
 </html>
