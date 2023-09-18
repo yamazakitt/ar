@@ -111,7 +111,10 @@
 
     <label for="r-slider"></label>
     <input type="range" id="r-slider" min="0" max="360" step="10" value="0">
-
+    
+    <!-- ボタンUIを追加 -->
+    <button id="button1">ボタン1</button>
+    <button id="button2">ボタン2</button>
 </div>
     -->
 </body>
@@ -213,5 +216,18 @@
     model.setAttribute('rotation', '0 ' + rotationValue + ' 0');
 });
 
+
+var button1 = document.querySelector('#button1');
+var button2 = document.querySelector('#button2');
+
+button1.addEventListener('click', function () {
+    // ボタン1がクリックされたときの処理を記述
+    // 例: alert('ボタン1がクリックされました');
+});
+
+button2.addEventListener('click', function () {
+    // ボタン2がクリックされたときの処理を記述
+    // 例: alert('ボタン2がクリックされました');
+});
 </script>
 </html>
